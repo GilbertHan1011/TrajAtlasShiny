@@ -1,0 +1,12 @@
+library(dplyr)
+library(stringr)
+meta <- wt_integrate@meta.data
+meta <- meta %>%
+  mutate(across(where(is.character), ~ str_replace_all(., "\\.MSC", ".Mes")))
+wt_integrate@meta.data <- meta
+saveRDS(wt_integrate,"mini_trajatlas.Rds")
+
+
+
+geneDatabase = read.csv("S6_Table_OPCST_gene_combine_database.csv",skip = 20)
+geneDatabase %>% head
